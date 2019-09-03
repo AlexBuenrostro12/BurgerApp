@@ -1,10 +1,12 @@
 import React from 'react';
 import Auxiliar from './Auxiliar';
 import Navbar from '../components/Menu/Navbar';
+import AppContainer from '../components/Navigation/AppContainer';
 
-const Layout = () => (
+const Layout = (props) => (
   <Auxiliar>
-      <Navbar />
+      <AppContainer />
+      {/* <Navbar /> */}
   </Auxiliar>
 );
 

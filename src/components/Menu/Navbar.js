@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
+
 const Navbar = () => {
 
     const [count, setCount] = useState(0);
