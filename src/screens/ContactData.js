@@ -1,30 +1,40 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import BurgerBuilder from '../components/Burger/BurgerBuilder';
+import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import Spinner from '../components/UI/Spinner';
 
-const Home = (props) => {
-    console.log('home: ', props);
+const CREATE_INGREDIENTS = gql`
+    mutation CREATE_INGREDIENTS {
+        customers {
+            name,
+            address
+        }
+    }
+`;
+//Make mutation
+
+const ContactData = (props) => {
     const { navigation } = props;
     const goToLogin = () => navigation.navigate('Login');
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Home</Text>
+            <Text style={styles.text}>ContactData</Text>
+            
             <Button
                 onPress={goToLogin}
                 title="Go to Login screen"
-                color="#2B3D54"
-                accessibilityLabel="Learn more about this purple button"
+                color="grey"
             />
-            <BurgerBuilder />
         </View>
     );
 }
 
-Home.navigationOptions = {
+ContactData.navigationOptions = {
     header: null
 };
 
-export default Home;
+export default ContactData;
 
 const styles = StyleSheet.create({
     container: {

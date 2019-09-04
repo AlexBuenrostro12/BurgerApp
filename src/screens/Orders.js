@@ -13,12 +13,12 @@ const ALL_CUSTOMERS_QUERY = gql`
     }
 `;
 
-const Order = (props) => {
+const Orders = (props) => {
     const { navigation } = props;
     const goToLogin = () => navigation.navigate('Login');
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Order</Text>
+            <Text style={styles.text}>Orders</Text>
             <Query query={ALL_CUSTOMERS_QUERY}>
                 {({data, loading, error}) => {
                     if (loading) return <Spinner />
@@ -41,11 +41,11 @@ const Order = (props) => {
     );
 }
 
-Order.navigationOptions = {
+Orders.navigationOptions = {
     header: null
 };
 
-export default Order;
+export default Orders;
 
 const styles = StyleSheet.create({
     container: {

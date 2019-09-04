@@ -4,21 +4,27 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 const Login = (props) => {
     console.log('login: ',  props);
     const { navigation } = props;
-    const goToHome = () => navigation.navigate('Home');
-    const goToOrder = () => navigation.navigate('Order');
+    const goToBurger = () => navigation.navigate('Burger');
+    const goToContactData = () => navigation.navigate('ContactData');
+    const goToOrders = () => navigation.navigate('Orders');
 
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Login</Text>
             <Button
-                onPress={goToHome}
-                title="Go to Home screen"
+                onPress={goToBurger}
+                title="Go to Burger screen"
                 color="#1E5599"
             />
-             <Button
-                onPress={goToOrder}
-                title="Go to Order screen"
+            <Button
+                onPress={goToContactData}
+                title="Go to ContactData screen"
                 color="green"
+            />
+            <Button
+                onPress={goToOrders}
+                title="Go to Orders screen"
+                color="purple"
             />
         </View>
     );

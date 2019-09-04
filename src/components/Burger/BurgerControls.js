@@ -1,14 +1,21 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 
+
 const BurgerControls = (props) => (
     <View style={styles.buttonsContainer}>
         <Text style={styles.price}>Price: {props.price}</Text>
         {props.ingredients.map(i => (
             <View key={i.ingredient} style={styles.buttonContent}>
-                <TouchableOpacity onPress={() => props.changeIngredientValueHandler(i.ingredient, 'subtract')}><Text style={[styles.textButtons, styles.textTitle]}>Less</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => {
+                    props.dispatchBurger({type: 'changeIngredientValueHandler', func: {key: i.ingredient, action:'subtract'}})
+                    props.dispatchPrice({type: 'calculatePrice', func: {key: i.ingredient, action:'subtract', ingredients: props.ingredients}})
+                }}><Text style={[styles.textButtons, styles.textTitle]}>Less</Text></TouchableOpacity>
                 <Text style={styles.textButtons}>{i.ingredient.toUpperCase()}</Text>
-                <TouchableOpacity onPress={() => props.changeIngredientValueHandler(i.ingredient, 'add')}><Text style={[styles.textButtons, styles.textTitle]}>More</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => {
+                    props.dispatchBurger({type: 'changeIngredientValueHandler', func: { key: i.ingredient, action:'add' }})
+                    props.dispatchPrice({type: 'calculatePrice', func: {key: i.ingredient, action:'add', ingredients: props.ingredients}})
+                }}><Text style={[styles.textButtons, styles.textTitle]}>More</Text></TouchableOpacity>
             </View>
         ))}
         <TouchableOpacity 
