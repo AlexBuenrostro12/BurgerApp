@@ -7,7 +7,7 @@ const CustomModal = (props) => (
             animationType="slide"
             transparent={false}
             visible={props.isShowModal}
-            onRequestClose={() => props.showModalHandler()}
+            onRequestClose={() => props.dispatchIsShowModal({ type: 'showModalHandler' })}
         >
             {props.children}
         </Modal>

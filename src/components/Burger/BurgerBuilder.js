@@ -4,54 +4,53 @@ import Burger from './Burger';
 import BurgerControls from './BurgerControls';
 import CustomModal from '../UI/Modal';
 import OrderSummary from '../OrderSummary/OrderSummary';
-import {BurgerBuilderContext} from '../../contexts/BurgerBuilderContext';
+import { BurgerBuilderContext } from '../../contexts/BurgerBuilderContext';
 
-const BurgerBuilder = () => {
+const BurgerBuilder = (props) => {
     return (
         <BurgerBuilderContext.Consumer>{(burgerBuilderContext) => {
             console.log('contex', burgerBuilderContext)
             const {
                 theings,
                 ings,
-                dispatchBurger,
+                dispatchIngredients,
                 totalPrice,
                 dispatchPrice,
                 purchasable,
-                dispatchPurchasable  
-                // ingredients,
-                // ing,
-                // totalPrice,
-                // changeIngredientValueHandler,
-                // purchasable,
-                // showModalHandler,
-                // isShowModal
-             } = burgerBuilderContext;
-             dispatchPurchasable({type: 'setPurchasable', func: { totalPrice: totalPrice }});
+                dispatchPurchasable,
+                isShowModal,
+                dispatchIsShowModal
+            } = burgerBuilderContext;
+
+            dispatchPurchasable({ type: 'setPurchasable', func: { totalPrice: totalPrice } });
+
             return (
                 <Auxiliar>
-                    <Burger ingredients={ings} /> 
+                    <Burger ingredients={ings} />
                     <BurgerControls
-                        ingredients={theings}
+                        ingredients={ings}
+                        ingredientsName={theings}
                         price={totalPrice}
-                        dispatchBurger={dispatchBurger}
+                        dispatchIngredients={dispatchIngredients}
                         dispatchPrice={dispatchPrice}
                         purchasable={purchasable}
-                        showModalHandler={true ? false : showModalHandler}
-                        />
-                    {true ? false : isShowModal && 
-                        <CustomModal 
-                        isShowModal={true ? false : isShowModal} 
-                        showModalHandler={true ? null : showModalHandler}
+                        dispatchIsShowModal={dispatchIsShowModal}
+                    />
+                    {isShowModal &&
+                        <CustomModal
+                            isShowModal={isShowModal}
+                            dispatchIsShowModal={dispatchIsShowModal}
                         >
-                            <OrderSummary 
-                                showModalHandler={true ? null : showModalHandler}
+                            <OrderSummary
+                                dispatchIsShowModal={dispatchIsShowModal}
                                 ingredients={ings}
                                 totalPrice={totalPrice}
-                                />
+                                navigation={props.navigation}
+                            />
                         </CustomModal>}
                 </Auxiliar>
             )
-        }} 
+        }}
         </BurgerBuilderContext.Consumer>
     );
 };

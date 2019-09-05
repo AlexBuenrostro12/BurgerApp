@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, StyleSheet, ScrollView, Text} from 'react-native';
+import { View, StyleSheet, ScrollView, Text } from 'react-native';
 import BurgerIngredient from './BurgerIngredient';
 
 
 const Burger = (props) => {
-   let transformIngredients = Object.keys(props.ingredients)
+  let transformIngredients = Object.keys(props.ingredients)
     .map(ingKey => {
       return [...Array(props.ingredients[ingKey])].map((_, i) => {
         return <BurgerIngredient key={ingKey + i} type={ingKey} />;
@@ -15,8 +15,8 @@ const Burger = (props) => {
     }, []);
 
 
-    if (transformIngredients.length === 0)
-      transformIngredients =  <Text style={{ fontSize: 16, fontWeight: 'bold' }}>¡Empieza a agregar ingredientes!</Text>;
+  if (transformIngredients.length === 0)
+    transformIngredients = <Text style={{ fontSize: 16, fontWeight: 'bold' }}>¡Start to add ingredients!</Text>;
   return (
     <ScrollView style={{ flex: 1 }}>
       <View style={styles.burgerContainer}>

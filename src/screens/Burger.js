@@ -15,7 +15,7 @@ const Burger = (props) => {
                 color="#2B3D54"
                 accessibilityLabel="Learn more about this purple button"
             />
-            <BurgerBuilder />
+            <BurgerBuilder navigation={navigation} />
         </View>
     );
 }

@@ -1,28 +1,32 @@
-import React, { createContext, useState, useReducer } from 'react';
+import React, { createContext, useReducer } from 'react';
 import { burgerBuilderReducer } from '../reducers/BurgerBuilderReducer';
 
 //This export and create the context of this component
 export const BurgerBuilderContext = createContext();
 
 const BurgerBuilderContextProvider = (props) => {
-    //Use states
-    const [isShowModal, setIsShowModal] = useState(false);
-    //Use states
 
     //Use reducers
-    const [ings, dispatchBurger] = useReducer(burgerBuilderReducer, {
-        meat: 0,
+
+    // Ingredients
+    const [ings, dispatchIngredients] = useReducer(burgerBuilderReducer, {
+        bacon: 0,
         cheese: 0,
+        meat: 0,
         salad: 0,
-        bacon: 0
     });
 
+    //Total price
     const [totalPrice, dispatchPrice] = useReducer(burgerBuilderReducer, 15);
+    //purchasable
     const [purchasable, dispatchPurchasable] = useReducer(burgerBuilderReducer, false);
+    // isShowModal
+    const [isShowModal, dispatchIsShowModal] = useReducer(burgerBuilderReducer, false)
+
     //Use reducers
 
 
-    const showModalHandler = () => setIsShowModal(!isShowModal);
+    // Name of ingredients
     const theings = [];
     for (let key in ings) {
         theings.push({
@@ -30,22 +34,17 @@ const BurgerBuilderContextProvider = (props) => {
         });
     }
     return (
-        <BurgerBuilderContext.Provider 
-            value={{ 
-                // ingredients, 
-                // ing, 
-                // totalPrice, 
-                // changeIngredientValueHandler, 
-                // purchasable, 
-                // showModalHandler, 
-                // isShowModal
+        <BurgerBuilderContext.Provider
+            value={{
                 theings,
                 ings,
-                dispatchBurger,
+                dispatchIngredients,
                 totalPrice,
                 dispatchPrice,
                 purchasable,
                 dispatchPurchasable,
+                isShowModal,
+                dispatchIsShowModal
             }}
         >
             {props.children}

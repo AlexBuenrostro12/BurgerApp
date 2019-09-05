@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const OrderSummary = (props) => {
+    console.log('props: ', props);
     const ingredients = [];
     for (let key in props.ingredients) {
         ingredients.push({
@@ -9,7 +10,6 @@ const OrderSummary = (props) => {
             amount: props.ingredients[key]
         });
     }
-    console.log('ingredients: ', ingredients);
 
     return (
         <View style={styles.viewModal}>
@@ -18,16 +18,17 @@ const OrderSummary = (props) => {
                 <Text key={ig.ing} style={styles.body}>{ig.ing}: {ig.amount}</Text>
             ))}
             <Text style={styles.body}>Price: {props.totalPrice}</Text>
+            <Text style={styles.body}>Do you wish order now?</Text>
             <View style={styles.buttonsContainer}>
                 <TouchableOpacity
                     style={styles.cancel}
-                    onPress={() => props.showModalHandler()}
+                    onPress={() => props.dispatchIsShowModal({ type: 'showModalHandler' })}
                 >
                     <Text style={styles.body}>Cancel</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.order}
-                    onPress={() => alert('ORDER!!!!')}
+                    onPress={() => props.navigation.navigate('ContactData')}
                 >
                     <Text style={styles.body}>Order</Text>
                 </TouchableOpacity>
