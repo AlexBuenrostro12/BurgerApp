@@ -10,7 +10,7 @@ import BurgerBuilderContextProvider from './src/contexts/BurgerBuilderContext';
 //GrapQL Server connection
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: 'http://192.168.1.71:4444',
+    uri: 'http://YOUR_IP:YOUR_PORT',
   }),
   cache: new InMemoryCache()
 });
