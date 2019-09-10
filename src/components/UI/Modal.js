@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Modal } from 'react-native';
+import { View, Modal, TouchableOpacity } from 'react-native';
 
 const CustomModal = (props) => (
     <View style={{ flex: 1 }}>

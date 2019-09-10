@@ -13,7 +13,7 @@ const OrderSummary = (props) => {
 
     return (
         <View style={styles.viewModal}>
-            <Text style={styles.title}>Your order</Text>
+            <Text style={styles.title}>Your order a burger with</Text>
             {ingredients.map(ig => (
                 <Text key={ig.ing} style={styles.body}>{ig.ing}: {ig.amount}</Text>
             ))}
